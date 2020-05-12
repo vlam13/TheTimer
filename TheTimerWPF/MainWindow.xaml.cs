@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Timers;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace TheTimerWPF
@@ -73,12 +75,10 @@ namespace TheTimerWPF
 
         private void PreviewTimeTextboxKeyDown(object sender, KeyEventArgs e)
         {
-            //add normal check for digits and for editing key inclusive Tab
-            //if (((e.Key >= Key.D0 && e.Key <= Key.D9) || e.Key == Key.Clear || e.Key == Key.Delete) && 
-            //    ((TextBox)sender).Text.Length < 2)
-            //    return;
-            
-            //e.Handled = true;
+            if (e.Key.IsDigit())
+                e.Handled = (sender as TextBox).Text.Length == 2; //not more then 2 digits
+            else
+                e.Handled = !e.Key.IsAllowed();
         }
     }
 }

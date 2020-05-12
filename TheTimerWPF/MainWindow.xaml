@@ -5,18 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TheTimerWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="400">
+        Title="MainWindow" Height="316" Width="200" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="40"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Width="200" Name="StartButton" Margin="1" Click="StartTimerButtonClick">Start</Button>
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <TextBox Name="Mins" Width="50" Margin="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PreviewKeyDown="PreviewTimeTextboxKeyDown">0</TextBox>
-            <TextBox Name="Secs" Width="50" Margin="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PreviewKeyDown="PreviewTimeTextboxKeyDown">3</TextBox>
-        </StackPanel>
-        <Button Grid.Row="2" Name="StopButton" Width="200" Margin="1" Click="StopTimerButtonClick">Stop</Button>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button Grid.ColumnSpan="2" Width="Auto" Name="StartButton" Margin="1" Click="StartTimerButtonClick">Start</Button>
+        <TextBox Grid.Row="1" Grid.Column="0" Name="Mins" Width="Auto" Margin="3" FontSize="75" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PreviewKeyDown="PreviewTimeTextboxKeyDown">0</TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" Name="Secs" Width="Auto" Margin="3" FontSize="75" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PreviewKeyDown="PreviewTimeTextboxKeyDown">3</TextBox>
+        <Button Grid.Row="2" Grid.ColumnSpan="2" Name="StopButton" Width="Auto" Margin="1" Click="StopTimerButtonClick">Stop</Button>
     </Grid>
 </Window>
