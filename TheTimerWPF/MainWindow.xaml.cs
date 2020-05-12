@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Timers;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace TheTimerWPF
@@ -31,11 +30,21 @@ namespace TheTimerWPF
             _mainTimer.Elapsed += MainTimerElapsed;
             _mainTimer.AutoReset = false;
 
-            _secondsTimer.Interval = 1000;
+            _secondsTimer.Interval = 920; //make second's timer a bit shorter cause of precessing delay
             _secondsTimer.Elapsed += SecondsTimerElapsed;
 
             _mainTimer.Start();
             _secondsTimer.Start();
+
+            Mins.IsEnabled = false;
+            Secs.IsEnabled = false;
+            StartButton.IsEnabled = false;
+            StopButton.IsEnabled = true;
+        }
+
+        private void StopTimerButtonClick(object sender, RoutedEventArgs e)
+        {
+            StopTimer();
         }
 
         private void SecondsTimerElapsed(object sender, ElapsedEventArgs e)
@@ -45,10 +54,21 @@ namespace TheTimerWPF
 
         private void MainTimerElapsed(object sender, ElapsedEventArgs e)
         {
+            Dispatcher.Invoke(StopTimer);
+            MessageBox.Show($"Time is up: {Stopwatch.GetTimestamp()}/{TimeSpan.TicksPerSecond}", "MainTimer");
+        }
+
+        private void StopTimer()
+        {
             _secondsTimer.AutoReset = false;
             _secondsTimer.Enabled = false;
             _mainTimer.Enabled = false;
-            MessageBox.Show($"Time is up: {Stopwatch.GetTimestamp()}/{TimeSpan.TicksPerSecond}", "MainTimer");
+
+            Mins.IsEnabled = true;
+            Secs.IsEnabled = true;
+
+            StartButton.IsEnabled = true;
+            StopButton.IsEnabled = false;
         }
 
         private void PreviewTimeTextboxKeyDown(object sender, KeyEventArgs e)

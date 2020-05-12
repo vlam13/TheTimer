@@ -10,11 +10,13 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="40"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal">
+        <Button Width="200" Name="StartButton" Margin="1" Click="StartTimerButtonClick">Start</Button>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
             <TextBox Name="Mins" Width="50" Margin="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PreviewKeyDown="PreviewTimeTextboxKeyDown">0</TextBox>
             <TextBox Name="Secs" Width="50" Margin="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" PreviewKeyDown="PreviewTimeTextboxKeyDown">3</TextBox>
-            <Button Width="200" Margin="1" Click="StartTimerButtonClick">Start Timer</Button>
         </StackPanel>
+        <Button Grid.Row="2" Name="StopButton" Width="200" Margin="1" Click="StopTimerButtonClick">Stop</Button>
     </Grid>
 </Window>
