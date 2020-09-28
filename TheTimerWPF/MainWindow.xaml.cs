@@ -21,6 +21,8 @@ namespace TheTimerWPF
         Timer _mainTimer = new Timer();
         Timer _secondsTimer = new Timer();
 
+        public int TestProperty { get; set; } //should be removed
+
         private void StartTimerButtonClick(object sender, RoutedEventArgs e)
         {
             int min = int.Parse(Mins.Text);
